@@ -4,7 +4,7 @@ import sys
 sys.path.insert(1, r'C:\Users\gener\OneDrive\Documents\GitHub\onlyFANS-Byld-WIT-Hackathon-21-\abuset_dir')
 import abusetofunny as abf
 
-token = 'ODEwMTM1NTAwMTgyNTE5ODA4.YCfPeg.4K0AGug6N8muvTr7V6Pv_Pydd2U'
+token = '<your-token-here>'
 
 bot = commands.Bot(command_prefix="$", case_insensitive = True)
 bot.remove_command("help")
