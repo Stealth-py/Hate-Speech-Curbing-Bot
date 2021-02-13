@@ -1,6 +1,6 @@
 import pandas as pd
 from funny_words import build_n_gram
-df = pd.read_excel("abuse_dir\expandedLexicon.xls")
+df = pd.read_excel("abuse_dir\expandedLexicon.xlsx")
 df_words = df['Word_type']
 ls_onlywords = []
 ls_words = []
