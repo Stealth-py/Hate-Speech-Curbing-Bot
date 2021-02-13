@@ -1,6 +1,6 @@
 import pandas as pd
 from funny_words import build_n_gram
-df = pd.read_excel('expandedLexicon.xlsx')
+df = pd.read_excel("abuse_dir\expandedLexicon.xls")
 df_words = df['Word_type']
 ls_onlywords = []
 ls_words = []
@@ -17,20 +17,19 @@ for i in range(len(ls_words)):
 def changeabuse(sentence):
     words = list(sentence.split())
     sentiment_score = 0
+    f = False
     for i in words:
         for j in ls_words:
-            if j[0] == i:
+            if j[0] == i.lower():
                 sentiment_score = sentiment_score + j[-1]
                 break
     if sentiment_score > 0:
         ls_m = list(sentence.split())
         for i in range(len(ls_m)):
-            if ls_m[i] in ls_onlywords:
+            if ls_m[i].lower() in ls_onlywords:
                 ls_m[i] = build_n_gram()
+                f = True
         updated_message = ' '.join(ls_m)
-        return updated_message
+        return (f, updated_message)
     else:
-        return sentence
-
-sentence = input()
-print(changeabuse(sentence))
+        return (f, sentence)

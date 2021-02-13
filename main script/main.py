@@ -1,7 +1,9 @@
 import discord
 from discord.ext import commands
 import sys
-sys.path.insert(1, r'C:\Users\gener\OneDrive\Documents\GitHub\onlyFANS-Byld-WIT-Hackathon-21-\abuset_dir')
+import os
+pth = os.path.abspath(os.getcwd())
+sys.path.append(pth + r"\\abuse_dir")
 import abusetofunny as abf
 
 token = '<your-token-here>'
@@ -21,10 +23,12 @@ async def on_guild_join(guild):
 
 @bot.event
 async def on_message(message):
-    #flag, processed_msg = abf.abuse_set(message)
-    if "hello" in message.content:
-        processed_msg = "bruh"
-        await message.edit(content=processed_msg)
+    flag, processed_msg = abf.changeabuse(message.content)
+    if flag and message.author.id != bot.user.id:
+        await message.channel.purge(limit = 1)
+        await message.channel.send(processed_msg)
+    print(message.content, " -> ", processed_msg, ": ", flag)
+
 
 @bot.command()
 async def help(ctx):
