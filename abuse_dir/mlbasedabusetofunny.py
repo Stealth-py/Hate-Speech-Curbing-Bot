@@ -1,11 +1,14 @@
 from googleapiclient import discovery
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from nltk import tokenize
 from nltk.corpus import stopwords   
 from textblob import TextBlob
 import pandas as pd
-import random
+import json
+import nltk
+from nltk import word_tokenize
 from funny_words import build_n_gram
+
+sid = SentimentIntensityAnalyzer()
 df = pd.read_excel('expandedLexicon.xlsx')
 df_words = df['Word_type']
 ls_onlywords = []
@@ -14,7 +17,7 @@ for i in df_words:
     ls_words.append(i)
 for i in range(len(ls_words)):
     ls_onlywords.append(ls_words[i].split("_")[0])
-API_KEY=''
+API_KEY='AIzaSyCMjxwhHyDp_frPgsM95ErTgl-nPsLyhkg'
 def word_gen(type):
     while True:
         replacement_word = list(build_n_gram().split())[0]
@@ -23,6 +26,7 @@ def word_gen(type):
             return replacement_word
         
 def abusetofunny(message):
+    f = False
     # Generates API client object dynamically based on service name and version.
     service = discovery.build('commentanalyzer', 'v1alpha1', developerKey=API_KEY)
 
@@ -36,7 +40,7 @@ def abusetofunny(message):
     result = eval(json.dumps(response, indent=2))
     toxicity_score = result["attributeScores"]["TOXICITY"]['spanScores'][0]['score']['value']
     if toxicity_score < 0.5:
-        return message
+        return (f, message)
     else:
         stop_words = set(stopwords.words('english'))
         sentences = list(message.split('.'))
@@ -69,10 +73,10 @@ def abusetofunny(message):
                         else:
                             ls_sentence[j] = list(build_n_gram().split())[0]
                     sentences[m] = ' '.join(ls_sentence)
-        return ' '.join(sentences)
+        return (f, ' '.join(sentences))
     
-try:
-    s = str(input())
-    print(abusetofunny(s))
-except:
-    print(s)
+# try:
+#     s = str(input())
+#     print(abusetofunny(s))
+# except:
+#     print(s)

@@ -1,5 +1,4 @@
 import discord
-from discord import client
 from discord.ext import commands
 import sys
 import os
@@ -10,7 +9,7 @@ import mlbasedabusetofunny as abf
 import jumbledwords as jw
 import hangman as hm
 
-token = '<your-token>'
+token = 'ODEwMTM1NTAwMTgyNTE5ODA4.YCfPeg.2A_sd6Ek8xKqOr0T6FIawPwEEcc'
 
 bot = commands.Bot(command_prefix="$", case_insensitive = True)
 bot.remove_command("help")
