@@ -77,7 +77,6 @@ async def hangman(ctx):
     f = False
     word = list(hm.hangman())
     question = ["_"]*len(word)
-    question = question[:-1]
     p1 = discord.Embed(title = "Game: HangMan", color = 0x6c0101)
     msg = f"Hey {ctx.message.author.mention}! Given below is a {len(word)} characters long word, and you need to guess the correct word.\n After guessing, you need to send the correct answer in this chatbox."
     qn = f"`{''.join(question)}`"
