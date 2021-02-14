@@ -33,8 +33,5 @@ def sentivader(message):
                 if ls_sentence[j] in ls_onlywords:
                     ls_sentence[j] = build_n_gram()
                 sentences[m] = ' '.join(ls_sentence)
-        print(sentences)
-        print(sentiment)
-        print(ss)
     return ' '.join(sentences)
 print(sentivader(input()))
