@@ -15,6 +15,20 @@ A discord bot made by our team only**FANS** for the Byld + WIT Hackathon 2021.
 - $hangman - Play the Hangman game
 - $help - Get Help
 
+## Hosting
+- For hosting our bot on our given GitHub repository, you can use Heroku and follow the steps given below:
+  - Fork our repository.
+  - Sign In to your heroku account.
+  - Create a new app on heroku.
+  - Click on the app present in the menu, and then click on Deploy.
+  - After that you'll see various options of deploying the app, but for now, we'll be using "Deploy using GitHub".
+  - After that, you'll be redirected to sign in to your GitHub account to connect it with your current Heroku App.
+  - Then, you'll be required to type in the name of the repository you want to deploy.
+  - After that, it's upto you if you want to Enable Automatic Deploys or not, it's basically whenever you make a change to your repository, it automatically gets deployed after the changes are committed and pushed.
+  - If automatic deployed is disabled, you can use manual deploy to deploy your project/bot by choosing the appropriate branch and then clicking on Deploy Branch.
+  - After this, go to Settings -> Config Vars -> Reveal Config Vars, and add the following, KEY = "token" and VALUE = "<your-discord-bot-token>", which you can find from your discord applications page of your bot. Click Add and you are done.
+  - Now, you just need to go to Resources and turn the switch in the Edit Dyno Formations tab, and your bot will be deployed.
+
 ## Key Features
 - Offers multiple games such as Hangman and Guess the Word
 - Has a hate speech filter which uses libraries such as NLTK and Text Blob alongside perspective API to detect hate speeches and alters them to make them funny. Does not need any commands to run, it keeps on running side-by-side.
