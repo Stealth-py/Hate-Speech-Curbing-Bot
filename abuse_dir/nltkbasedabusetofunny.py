@@ -1,30 +1,32 @@
 from nltk.classify import NaiveBayesClassifier
 from nltk.corpus import subjectivity
-from nltk.downloader import update
 from nltk.sentiment import SentimentAnalyzer
 from nltk.sentiment.util import *
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk import tokenize
+from nltk.corpus import stopwords  
+from nltk.tokenize import word_tokenize  
 import pandas as pd
 from funny_words import build_n_gram
-
-sid = SentimentIntensityAnalyzer()
-df = pd.read_excel('abuse_dir\expandedLexicon.xlsx')
+df = pd.read_excel('expandedLexicon.xlsx')
 df_words = df['Word_type']
-ls_words = []
 ls_onlywords = []
 ls_words = []
 for i in df_words:
     ls_words.append(i)
 for i in range(len(ls_words)):
     ls_onlywords.append(ls_words[i].split("_")[0])
-
 def sentivader(message):
-    f = False
+    stop_words = set(stopwords.words('english'))
     sentences = list(message.split('.'))
     ls_sentiment = []
     for i in range(len(sentences)):
-        ss = sid.polarity_scores(sentences[i])
+        ls_words_remove_stop = list(sentences[i].split())
+        for i in ls_words_remove_stop:
+            if i in stop_words:
+                ls_words_remove_stop.remove(i)
+        sentence_no_stop_words = ' '.join(ls_words_remove_stop)
+        ss = sid.polarity_scores(sentence_no_stop_words)
         sentiment = 0
         for k in sorted(ss):
             if k == 'compound':
@@ -36,13 +38,8 @@ def sentivader(message):
         else:
             ls_sentence = sentences[m].split()
             for j in range(len(ls_sentence)):
-                if ls_sentence[j] in ls_onlywords:
-                    ls_sentence[j] = build_n_gram()
-                    f = True
+                if ls_sentence[j].lower() in ls_onlywords:
+                    ls_sentence[j] = list(build_n_gram().split())[0]
                 sentences[m] = ' '.join(ls_sentence)
-        # print(sentences)
-        # print(sentiment)
-        # print(ss)
-        updated_message = ' '.join(sentences)
-    return (f, updated_message)
-# print(sentivader(input()))
+    return ' '.join(sentences)
+print(sentivader(input()))
