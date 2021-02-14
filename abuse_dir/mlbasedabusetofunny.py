@@ -9,7 +9,7 @@ from nltk import word_tokenize
 from funny_words import build_n_gram
 
 sid = SentimentIntensityAnalyzer()
-df = pd.read_excel('expandedLexicon.xlsx')
+df = pd.read_excel('abuse_dir/expandedLexicon.xlsx')
 df_words = df['Word_type']
 ls_onlywords = []
 ls_words = []
@@ -62,6 +62,7 @@ def abusetofunny(message):
                 ls_sentence = sentences[m].split()
                 for j in range(len(ls_sentence)):
                     if ls_sentence[j].lower() in ls_onlywords:
+                        f = True
                         blob = TextBlob(ls_sentence[j].lower())
                         tag = blob.tags[0][-1]
                         if tag == 'RB':
