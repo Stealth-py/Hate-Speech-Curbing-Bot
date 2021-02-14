@@ -1,4 +1,5 @@
 # onlyFANS.py
+### This project was submitted to Byld+WiT Hackthon 2021
 A discord bot made by our team only**FANS** for the Byld + WIT Hackathon 2021.
 
 # Languages Used
