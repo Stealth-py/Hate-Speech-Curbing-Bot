@@ -8,7 +8,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize  
 import pandas as pd
 from funny_words import build_n_gram
-df = pd.read_excel('expandedLexicon.xlsx')
+sid = SentimentIntensityAnalyzer()
+df = pd.read_excel('abuse_dir/expandedLexicon.xlsx')
 df_words = df['Word_type']
 ls_onlywords = []
 ls_words = []
@@ -16,10 +17,12 @@ for i in df_words:
     ls_words.append(i)
 for i in range(len(ls_words)):
     ls_onlywords.append(ls_words[i].split("_")[0])
+
 def sentivader(message):
     stop_words = set(stopwords.words('english'))
     sentences = list(message.split('.'))
     ls_sentiment = []
+    f = False
     for i in range(len(sentences)):
         ls_words_remove_stop = list(sentences[i].split())
         for i in ls_words_remove_stop:
@@ -39,7 +42,9 @@ def sentivader(message):
             ls_sentence = sentences[m].split()
             for j in range(len(ls_sentence)):
                 if ls_sentence[j].lower() in ls_onlywords:
+                    f = True
                     ls_sentence[j] = list(build_n_gram().split())[0]
                 sentences[m] = ' '.join(ls_sentence)
-    return ' '.join(sentences)
+    updated = ' '.join(sentences)
+    return (f, updated)
 print(sentivader(input()))

@@ -45,7 +45,7 @@ def jumbledwords():
             word = random.choice(string)
             jumbledword.append(word)
             string = string.replace(word,"",1)
-    return(jumbledword,answer)
+    return(", ".join(jumbledword), answer)
     
         
     
