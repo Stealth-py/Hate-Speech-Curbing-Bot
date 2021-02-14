@@ -1,13 +1,10 @@
 from googleapiclient import discovery
-from nltk.classify import NaiveBayesClassifier
-from nltk.corpus import subjectivity
-from nltk.sentiment import SentimentAnalyzer
-from nltk.sentiment.util import *
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk import tokenize
-from nltk.corpus import stopwords  
-from nltk.tokenize import word_tokenize  
+from nltk.corpus import stopwords   
+from textblob import TextBlob
 import pandas as pd
+import random
 from funny_words import build_n_gram
 
 sid = SentimentIntensityAnalyzer()
@@ -15,6 +12,10 @@ df = pd.read_excel('abuse_dir/expandedLexicon.xlsx')
 df_words = df['Word_type']
 ls_onlywords = []
 ls_words = []
+ls_adverbs = ['cheerfully', 'deftly', 'devotedly', 'eagerly', 'elegantly', 'faithfully', 'fortunately',
+              'gleefully', 'gracefully', 'happily', 'honestly', 'innocently']
+ls_nouns = ['kitty', 'Baby Yoda', 'Vader', 'dragon', 'eskimo', 'ninja', 'Jonesy', 'gamer', 'dentist', 'onlyFans']
+ls_adjectives = ['cool', 'nice', 'epic', 'interesting', 'funny', 'perfect', 'delightful', 'amused', 'comfortable']
 for i in df_words:
     ls_words.append(i)
 for i in range(len(ls_words)):
@@ -59,7 +60,21 @@ def abusetofunny(message):
                 ls_sentence = sentences[m].split()
                 for j in range(len(ls_sentence)):
                     if ls_sentence[j].lower() in ls_onlywords:
-                        ls_sentence[j] = list(build_n_gram().split())[0]
-                        f = True
+                        blob = TextBlob(ls_sentence[j].lower())
+                        tag = blob.tags[0][-1]
+                        if tag == 'RB':
+                            ls_sentence[j] = random.choice(ls_adverbs)
+                        elif tag == 'NN':
+                            ls_sentence[j] = random.choice(ls_nouns)
+                        elif tag == 'JJ':
+                            ls_sentence[j] = random.choice(ls_adjectives)
+                        else:
+                            ls_sentence[j] = list(build_n_gram().split())[0]
                     sentences[m] = ' '.join(ls_sentence)
-        return (f, ' '.join(sentences))
+        return ' '.join(sentences)
+    
+try:
+    s = str(input())
+    print(abusetofunny(s))
+except:
+    print(s)
