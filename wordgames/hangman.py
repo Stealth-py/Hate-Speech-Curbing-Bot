@@ -39,23 +39,14 @@ sentence.append("Consumer")
 def answer_checker(answer,word_min):
     for x in word_min:
         if x == answer:
-            return 1
-        else:
-            return 0
-
+            return True
+    return False
 
 def hangman():
     word = random.choice(sentence)
     wordcopy = word
     length = len(word)
-    question = []
-    while(question.find("_")!=0):
-        for i in range(0,length):
-            question.append["_"]
-        lives = 5
-        print ("You have ", lives, " lives")
-        word_min = list(set(word))
-    #input character from user
-        answer = input()
-        
-    
+    return word
+    # lives = 5
+    # print ("You have ", lives, " lives")
+    # answer = input()

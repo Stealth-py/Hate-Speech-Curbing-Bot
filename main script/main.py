@@ -8,6 +8,7 @@ sys.path.append(pth + r"\\abuse_dir")
 sys.path.append(pth + r"\\wordgames")
 import nltkbasedabusetofunny as abf
 import jumbledwords as jw
+import hangman as hm
 
 token = '<token>'
 
@@ -27,11 +28,14 @@ async def on_guild_join(guild):
 
 @bot.event
 async def on_message(message):
-    flag, processed_msg = abf.sentivader(message.content)
-    if flag and message.author.id != bot.user.id:
-        await message.delete()
-        await message.channel.send(processed_msg)
-    print(message.content, " -> ", processed_msg, ": ", flag)
+    try:
+        flag, processed_msg = abf.abusetofunny(message.content)
+        if flag and message.author.id != bot.user.id:
+            await message.delete()
+            await message.channel.send(f"{message.author.mention}: {processed_msg}")
+        print(message.content, " -> ", processed_msg, ": ", flag)
+    except Exception as e:
+        print(f"Exception {e} was raised")
     await bot.process_commands(message)
 
 
@@ -61,9 +65,25 @@ async def jumble(ctx):
         p1.add_field(name = "Won", value = msg, inline = False)
     else:
         p1.color = 0xffffff
-        msg = f"Sorry, you didn't win. Your guess was not correct. The correct answer was {answer}."
+        msg = f"Sorry {ctx.message.author.mention}, you didn't win. Your guess was not correct. The correct answer was {answer}."
         p1.add_field(name = "Lost", value = msg, inline=False)
     await ctx.channel.send(embed = p1)
+
+
+@bot.command()
+async def hangman(ctx):
+    lives = 5
+    f = False
+    word = list(hm.hangman())
+    question = ["_"]*len(word)
+    question = question[:-1]
+    p1 = discord.Embed(title = "Game: HangMan", color = 0x6c0101)
+    msg = f"Hey {ctx.message.author.mention}! Given below is a {len(word)} characters long word, and you need to guess the correct word.\n After guessing, you need to send the correct answer in this chatbox."
+    qn = f"`{question}`"
+    p1.add_field(name = "Task Details", value = msg, inline = False)
+    p1.add_field(name = "Question", value = qn, inline = False)
+    p2 = discord.Embed(title = "HangMan", color = )
+    while f or lives:
 
 
 
