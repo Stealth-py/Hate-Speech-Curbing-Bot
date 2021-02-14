@@ -8,13 +8,14 @@ A discord bot made by our team only**FANS** for the Byld + WIT Hackathon 2021.
 - Offers multiple games such as Hangman and Guess the Word
 - Has a hate speech filter which uses libraries such as NLTK and Text Blob alongside perspective API to detect hate speeches and alters them to make them funny.
 
-# Libraries & Technologies used
+# Libraries, Technologies & Data used
 - [Natural Language Toolkit](https://www.nltk.org/)
 - [TextBlob](https://textblob.readthedocs.io/en/dev/)
 - [Perspective API](https://www.perspectiveapi.com/)
 - [Pandas](https://pandas.pydata.org/)
 - [funny_words](https://github.com/sethblack/funny-words)
 - [Google API Client](https://pypi.org/project/google-api-python-client/)
+- [Data Set of Abusive Words](https://github.com/uds-lsv/lexicon-of-abusive-words/blob/master/Lexicons/expandedLexicon.txt)
 
 # Researches References
 - [A Thematic Analysis of Suicide Notes](https://www.researchgate.net/publication/12748208_A_Thematic_Analysis_of_Suicide_Notes)
