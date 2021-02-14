@@ -13,6 +13,7 @@ A discord bot made by our team only**FANS** for the Byld + WIT Hackathon 2021.
 # Commands-
 - $jumble - Play the Jumble Words game
 - $hangman - Play the Hangman game
+- $help - Get Help
 
 # Key Features
 - Offers multiple games such as Hangman and Guess the Word
