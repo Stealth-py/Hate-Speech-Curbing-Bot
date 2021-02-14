@@ -66,12 +66,12 @@ ul{
     font-weight: bold;
     color: goldenrod;
     width: 250%;
-    text-align: center;
+    text-align: left;
     padding-left: 20px;
     
     height: 45px;
     padding-top: 20px; 
-    margin-left: auto;
+    margin-left: 100%;
     margin-right: auto;
     display: block;
 }
@@ -149,5 +149,17 @@ transition-duration: 500ms;
         border: 2px goldenrod;
         width: 50%;
     }
-
+    .subheading{
+        color: goldenrod;
+        width: 42ch;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: bold;
+        text-align: center;
+        text-justify: inherit;
+        margin-left: 32%;
+        
+    }
+    ul li ::before {
+    color: goldenrod;
+}
     
