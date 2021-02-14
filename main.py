@@ -9,7 +9,7 @@ import mlbasedabusetofunny as abf
 import jumbledwords as jw
 import hangman as hm
 
-token = 'ODEwMTM1NTAwMTgyNTE5ODA4.YCfPeg.2A_sd6Ek8xKqOr0T6FIawPwEEcc'
+token = '<your-token-here>'
 
 bot = commands.Bot(command_prefix="$", case_insensitive = True)
 bot.remove_command("help")
