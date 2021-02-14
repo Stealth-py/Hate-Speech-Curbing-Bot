@@ -4,7 +4,7 @@ A discord bot made by our team only**FANS** for the Byld + WIT Hackathon 2021.
 
 # How to run-
 - Visit [our website](https://stealth-py.github.io/onlyFANS.py/Website/hackathon.html)
-- Invite the bot
+- Invite the bot by clicking on "Add Bot to Discord"
 - Enjoy
 
 # Languages Used
