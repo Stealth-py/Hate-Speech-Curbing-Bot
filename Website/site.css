@@ -106,12 +106,16 @@ transition-duration: 500ms;
 }
 
 .image0{
-    border-radius: 20em;
-    width: 30%;
-    height: 40%;
+    border-radius: 100px;
+    width: 35%;
+    height: 30%;
     margin-left: auto;
     margin-right: auto;
     display: block;
+    border-color: goldenrod;
+    border-style: solid;
+    border-width: 3px;
+    padding: 20px;
 }
 
 #a:link, #a:visited {
