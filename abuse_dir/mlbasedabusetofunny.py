@@ -7,7 +7,7 @@ import json
 import nltk
 from nltk import word_tokenize
 from funny_words import build_n_gram
-nltk.download('vader_lexicon')
+#nltk.download('vader_lexicon')
 
 sid = SentimentIntensityAnalyzer()
 df = pd.read_excel('abuse_dir/expandedLexicon.xlsx')
