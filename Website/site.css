@@ -4,7 +4,7 @@ body{
     align-items: center;
     justify-content: center;
     background-color:black;
-    
+    background-repeat: repeat;
 }
 ul{
     text-align: center;
