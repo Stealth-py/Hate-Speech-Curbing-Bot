@@ -5,27 +5,24 @@ from nltk.corpus import stopwords
 from textblob import TextBlob
 import pandas as pd
 import random
-import json
 from funny_words import build_n_gram
-
-sid = SentimentIntensityAnalyzer()
-df = pd.read_excel('abuse_dir/expandedLexicon.xlsx')
+df = pd.read_excel('expandedLexicon.xlsx')
 df_words = df['Word_type']
 ls_onlywords = []
 ls_words = []
-ls_adverbs = ['cheerfully', 'deftly', 'devotedly', 'eagerly', 'elegantly', 'faithfully', 'fortunately',
-              'gleefully', 'gracefully', 'happily', 'honestly', 'innocently']
-ls_nouns = ['kitty', 'Baby Yoda', 'Vader', 'dragon', 'eskimo', 'ninja', 'Jonesy', 'gamer', 'dentist', 'onlyFans']
-ls_adjectives = ['cool', 'nice', 'epic', 'interesting', 'funny', 'perfect', 'delightful', 'amused', 'comfortable']
 for i in df_words:
     ls_words.append(i)
 for i in range(len(ls_words)):
     ls_onlywords.append(ls_words[i].split("_")[0])
-
-API_KEY='<your-api-key>'
-
+API_KEY='AIzaSyCMjxwhHyDp_frPgsM95ErTgl-nPsLyhkg'
+def word_gen(type):
+    while True:
+        replacement_word = list(build_n_gram().split())[0]
+        text = word_tokenize(replacement_word)
+        if nltk.pos_tag(text)[0][-1] == type:
+            return replacement_word
+        
 def abusetofunny(message):
-    f = False
     # Generates API client object dynamically based on service name and version.
     service = discovery.build('commentanalyzer', 'v1alpha1', developerKey=API_KEY)
 
@@ -39,7 +36,7 @@ def abusetofunny(message):
     result = eval(json.dumps(response, indent=2))
     toxicity_score = result["attributeScores"]["TOXICITY"]['spanScores'][0]['score']['value']
     if toxicity_score < 0.5:
-        return (f, message)
+        return message
     else:
         stop_words = set(stopwords.words('english'))
         sentences = list(message.split('.'))
@@ -62,21 +59,20 @@ def abusetofunny(message):
                 for j in range(len(ls_sentence)):
                     if ls_sentence[j].lower() in ls_onlywords:
                         blob = TextBlob(ls_sentence[j].lower())
-                        f = True
                         tag = blob.tags[0][-1]
                         if tag == 'RB':
-                            ls_sentence[j] = random.choice(ls_adverbs)
+                            ls_sentence[j] = word_gen('RB')
                         elif tag == 'NN':
-                            ls_sentence[j] = random.choice(ls_nouns)
+                            ls_sentence[j] = word_gen('NN')
                         elif tag == 'JJ':
-                            ls_sentence[j] = random.choice(ls_adjectives)
+                            ls_sentence[j] = word_gen('JJ')
                         else:
                             ls_sentence[j] = list(build_n_gram().split())[0]
                     sentences[m] = ' '.join(ls_sentence)
-        return (f, ' '.join(sentences))
+        return ' '.join(sentences)
     
-# try:
-#     s = str(input())
-#     print(abusetofunny(s))
-# except:
-#     print(s)
+try:
+    s = str(input())
+    print(abusetofunny(s))
+except:
+    print(s)
