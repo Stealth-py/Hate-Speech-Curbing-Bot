@@ -2,13 +2,17 @@
 ### This project was submitted to Byld+WiT Hackthon 2021
 A discord bot made by our team only**FANS** for the Byld + WIT Hackathon 2021.
 
+# Languages Used
+<img src = "https://img.shields.io/badge/python%20-%236C0101.svg?style=for-the-badge&logo=python&logoColor=white" alt="python"/> <img src = "https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" alt = "css"/> <img src = "https://img.shields.io/badge/HTML-orange?style=for-the-badge&logo=html5&logoColor=white" alt = "html"/>
+
 # How to run-
 - Visit [our website](https://stealth-py.github.io/onlyFANS.py/Website/hackathon.html)
 - Invite the bot by clicking on "Add Bot to Discord"
 - Enjoy
 
-# Languages Used
-<img src = "https://img.shields.io/badge/python%20-%236C0101.svg?style=for-the-badge&logo=python&logoColor=white" alt="python"/> <img src = "https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" alt = "css"/> <img src = "https://img.shields.io/badge/HTML-orange?style=for-the-badge&logo=html5&logoColor=white" alt = "html"/>
+# Commands-
+- $jumble - Play the Jumble Words game
+- $hangman - Play the Hangman game
 
 # Key Features
 - Offers multiple games such as Hangman and Guess the Word
