@@ -1,11 +1,9 @@
 import discord
 from discord.ext import commands
 import sys
-import os
-pth = os.path.abspath(os.getcwd())
 sys.path.append(pth + r"\\abuse_dir")
 sys.path.append(pth + r"\\wordgames")
-print(pth)
+print(sys.pth)
 import mlbasedabusetofunny as abf
 import jumbledwords as jw
 import hangman as hm
