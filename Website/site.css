@@ -6,6 +6,7 @@ body{
     /* background-image: url("background.jpg");
     background-repeat: repeat; */
     background-color: #000000;
+    background-repeat: repeat;
 }
 ul{
     text-align: center;
