@@ -57,23 +57,5 @@ def hangman():
         word_min = list(set(word))
     #input character from user
         answer = input()
-        if (answer_checker(answer,word_min) == 1):
-            while(word.find(answer)!=0):
-                question[word.find(answer)] = answer
-                word.replace(answer," ", 1)
         
-        else :
-            lives -= 1
-        print("You have ", lives, " lives")
-        if (lives == 0):
-            print("You are out of lives")
-            print("The word was ", wordcopy)
-            break
-        else:
-            print(question)
-
-
-
-
-
     
