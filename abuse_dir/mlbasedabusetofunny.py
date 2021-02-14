@@ -5,6 +5,7 @@ from nltk.corpus import stopwords
 from textblob import TextBlob
 import pandas as pd
 import random
+import json
 from funny_words import build_n_gram
 
 sid = SentimentIntensityAnalyzer()
@@ -21,7 +22,7 @@ for i in df_words:
 for i in range(len(ls_words)):
     ls_onlywords.append(ls_words[i].split("_")[0])
 
-API_KEY=''
+API_KEY='<your-api-key>'
 
 def abusetofunny(message):
     f = False
@@ -61,6 +62,7 @@ def abusetofunny(message):
                 for j in range(len(ls_sentence)):
                     if ls_sentence[j].lower() in ls_onlywords:
                         blob = TextBlob(ls_sentence[j].lower())
+                        f = True
                         tag = blob.tags[0][-1]
                         if tag == 'RB':
                             ls_sentence[j] = random.choice(ls_adverbs)
@@ -71,10 +73,10 @@ def abusetofunny(message):
                         else:
                             ls_sentence[j] = list(build_n_gram().split())[0]
                     sentences[m] = ' '.join(ls_sentence)
-        return ' '.join(sentences)
+        return (f, ' '.join(sentences))
     
-try:
-    s = str(input())
-    print(abusetofunny(s))
-except:
-    print(s)
+# try:
+#     s = str(input())
+#     print(abusetofunny(s))
+# except:
+#     print(s)

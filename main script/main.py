@@ -6,11 +6,11 @@ import os
 pth = os.path.abspath(os.getcwd())
 sys.path.append(pth + r"\\abuse_dir")
 sys.path.append(pth + r"\\wordgames")
-import nltkbasedabusetofunny as abf
+import mlbasedabusetofunny as abf
 import jumbledwords as jw
 import hangman as hm
 
-token = '<token>'
+token = '<your-token>'
 
 bot = commands.Bot(command_prefix="$", case_insensitive = True)
 bot.remove_command("help")
@@ -42,8 +42,10 @@ async def on_message(message):
 @bot.command()
 async def help(ctx):
     p1 = discord.Embed(title = "Help Section", color = 0x6c0101)
-    msg1 = "Hello! You can use the following commands to play various word games:/n 1)`$jumble` to play Jumbled Words, where you'll be given one try to guess what the correct word is."
+    msg1 = "Hello! You can use the following commands to play various word games."
+    msg2 = "1)`$jumble` to play Jumbled Words, where you'll be given one try to guess what the correct word is.\n 2)`$hangman`, to play HangMan, with 5 lives, where you need to either guess the correct letter in the word or guess the correct word."
     p1.add_field(name="Help", value=msg1, inline=False)
+    p1.add_field(name = "Commands", value = msg2, inline=False)
     await ctx.channel.send(embed = p1)
 
 
@@ -79,12 +81,57 @@ async def hangman(ctx):
     question = question[:-1]
     p1 = discord.Embed(title = "Game: HangMan", color = 0x6c0101)
     msg = f"Hey {ctx.message.author.mention}! Given below is a {len(word)} characters long word, and you need to guess the correct word.\n After guessing, you need to send the correct answer in this chatbox."
-    qn = f"`{question}`"
+    qn = f"`{''.join(question)}`"
     p1.add_field(name = "Task Details", value = msg, inline = False)
     p1.add_field(name = "Question", value = qn, inline = False)
-    p2 = discord.Embed(title = "HangMan", color = )
+    await ctx.send(embed = p1)
+    p2 = discord.Embed(title = "HangMan", color = 0x800080)
+    x = ''.join(word)
+    x = x.lower()
+    msg = f"You have {lives} lives and your question is `{' '.join(question)}`.\n Respond with your choice below, either "
+    p2.add_field(name = "Current Progress", value = msg, inline=False)
+    editable = await ctx.send(embed = p2)
     while f or lives:
-
+        p = discord.Embed(title = "HangMan", color = 0x800080)
+        arg = await bot.wait_for('message', check = lambda message: message.author==ctx.author)
+        guess = f"Your guess: `{arg.content}`."
+        res = arg.content
+        res = res.lower()
+        if len(res)==len(x):
+            if res == x:
+                f = True
+                break
+            else:
+                lives-=1
+        else:
+            if len(res)==1:
+                if res in x:
+                    for i in range(len(x)):
+                        if x[i]==res:
+                            question[i] = res
+                else:
+                    lives-=1
+            else:
+                lives-=1
+        if ''.join(question)==x:
+            f = True
+            break
+        qn = f"`{' '.join(question)}` and `{lives}` lives."
+        p.add_field(name = "Current Progress", value = qn + "\n" + guess, inline=False)
+        await editable.edit(embed = p)
+        p = editable
+        #print(editable)
+    px = discord.Embed(title = "Result")
+    print(f)
+    if f:
+        px.color = 0xdaa520
+        msg = f"Congratulations {ctx.message.author.mention}! You got the correct answer!"
+        px.add_field(name = "Won", value = msg, inline = False)
+    else:
+        px.color = 0xffffff
+        msg = f"Sorry {ctx.message.author.mention}, you didn't win. Your lives ran out or your guess was not correct. The correct answer was {''.join(word)}."
+        px.add_field(name = "Lost", value = msg, inline=False)
+    await ctx.send(embed = px)
 
 
 bot.run(token)

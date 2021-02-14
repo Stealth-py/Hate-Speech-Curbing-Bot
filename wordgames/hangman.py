@@ -36,17 +36,8 @@ sentence.append("Maths")
 sentence.append("History")
 sentence.append("Consumer")
 
-def answer_checker(answer,word_min):
-    for x in word_min:
-        if x == answer:
-            return True
-    return False
-
 def hangman():
     word = random.choice(sentence)
     wordcopy = word
     length = len(word)
     return word
-    # lives = 5
-    # print ("You have ", lives, " lives")
-    # answer = input()
