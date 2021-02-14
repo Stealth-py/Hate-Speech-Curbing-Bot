@@ -14,6 +14,6 @@ A discord bot made by our team onlyFANS for the Byld + WIT Hackathon 2021.
 - [Google API Client](https://pypi.org/project/google-api-python-client/)
 
 # Researches References-
-- [A Thematic Analysis of Suicide Notes)](https://www.researchgate.net/publication/12748208_A_Thematic_Analysis_of_Suicide_Notes)
+- [A Thematic Analysis of Suicide Notes](https://www.researchgate.net/publication/12748208_A_Thematic_Analysis_of_Suicide_Notes)
 - [Detecting suicidal posts with Natural Language Processing](https://towardsdatascience.com/goodbye-world-4cc844197d51)
 - [Detection of Suicide Ideation in Social Media Forums Using Deep Learning](https://www.mdpi.com/1999-4893/13/1/7/htm)
