@@ -13,6 +13,7 @@ df = pd.read_excel('abuse_dir\expandedLexicon.xlsx')
 df_words = df['Word_type']
 ls_words = []
 ls_onlywords = []
+ls_words = []
 for i in df_words:
     ls_words.append(i)
 for i in range(len(ls_words)):
