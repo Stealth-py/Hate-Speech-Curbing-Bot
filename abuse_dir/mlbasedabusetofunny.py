@@ -17,7 +17,7 @@ for i in df_words:
     ls_words.append(i)
 for i in range(len(ls_words)):
     ls_onlywords.append(ls_words[i].split("_")[0])
-API_KEY='AIzaSyCMjxwhHyDp_frPgsM95ErTgl-nPsLyhkg'
+API_KEY=''
 def word_gen(type):
     while True:
         replacement_word = list(build_n_gram().split())[0]
