@@ -1,12 +1,13 @@
 import discord
+from discord import client
 from discord.ext import commands
 import sys
 import os
 pth = os.path.abspath(os.getcwd())
 sys.path.append(pth + r"\\abuse_dir")
-import abusetofunny as abf
+import nltkbasedabusetofunny as abf
 
-token = '<your-token-here>'
+token = '<token>'
 
 bot = commands.Bot(command_prefix="$", case_insensitive = True)
 bot.remove_command("help")
@@ -23,9 +24,9 @@ async def on_guild_join(guild):
 
 @bot.event
 async def on_message(message):
-    flag, processed_msg = abf.changeabuse(message.content)
+    flag, processed_msg = abf.sentivader(message.content)
     if flag and message.author.id != bot.user.id:
-        await message.channel.purge(limit = 1)
+        await message.delete()
         await message.channel.send(processed_msg)
     print(message.content, " -> ", processed_msg, ": ", flag)
 
