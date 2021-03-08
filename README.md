@@ -1,9 +1,8 @@
 # onlyFANS.py
 ### This project was submitted to Byld+WiT Hackthon 2021
-A discord bot made by our team only**FANS** for the Byld + WIT Hackathon 2021.
+A discord bot made by our team only**FANS** which can alter cuss words in a discord chat thread and also allows you to play a few word games.
 
-<img src = "logo.jpeg"/>
-<img src = "698cd2ac-a8a7-4333-8d92-55db8c3c0451.jpg"/>
+<!-- <img src = "logo.jpeg"/>  -->
 
 ## Languages Used
 <img src = "https://img.shields.io/badge/python%20-%236C0101.svg?style=for-the-badge&logo=python&logoColor=white" alt="python"/> <img src = "https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" alt = "css"/> <img src = "https://img.shields.io/badge/HTML-orange?style=for-the-badge&logo=html5&logoColor=white" alt = "html"/>
