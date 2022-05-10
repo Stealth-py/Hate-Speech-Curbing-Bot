@@ -1,4 +1,4 @@
-# onlyFANS.py
+# Hate Speech Curbing Bot
 ### This project was submitted to Byld+WiT Hackthon 2021
 A discord bot made by our team only**FANS** which can alter cuss words in a discord chat thread and also allows you to play a few word games.
 
